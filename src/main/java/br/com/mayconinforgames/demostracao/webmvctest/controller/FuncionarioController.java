@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class FuncionarioController {
     private final FuncionarioRepository funcionarioRepository;
+
     public FuncionarioController(FuncionarioRepository funcionarioRepository) {
         this.funcionarioRepository = funcionarioRepository;
     }
@@ -41,7 +42,7 @@ public class FuncionarioController {
     }
 
     @PutMapping("/funcionarios/{id}")
-    public ResponseEntity<Funcionario> updateEmployee(@PathVariable("id") long id,
+    public ResponseEntity<Funcionario> alterarFuncionario(@PathVariable("id") long id,
                                                    @RequestBody Funcionario funcionario) {
 
         Optional<Funcionario> funcionarioData = funcionarioRepository.findById(id);

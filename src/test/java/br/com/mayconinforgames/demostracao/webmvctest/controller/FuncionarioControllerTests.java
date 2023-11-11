@@ -4,10 +4,13 @@ import br.com.mayconinforgames.demostracao.webmvctest.entity.Funcionario;
 import br.com.mayconinforgames.demostracao.webmvctest.repository.FuncionarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -16,12 +19,14 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @WebMvcTest(FuncionarioController.class)
 class FuncionarioControllerTests {
@@ -31,7 +36,8 @@ class FuncionarioControllerTests {
 
 	@Autowired
 	private ObjectMapper objectMapper;
-
+	@InjectMocks
+	private FuncionarioController funcionarioController;
 	@MockBean
 	private FuncionarioRepository funcionarioRepository;
 
